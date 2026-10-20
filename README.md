@@ -29,6 +29,18 @@ advertising resource. Your application and its keys stay under your control.
 
 Complete API reference: [`docs/API.md`](docs/API.md)
 
+## The three TagRelayLab projects
+
+| Repository | Purpose |
+| --- | --- |
+| [TagRelayLab-ESP32-Library](https://github.com/Mattboxx/TagRelayLab-ESP32-Library) | This standalone firmware library; API, include and package name: `FindMyAdv`. |
+| [TagRelayLab-Appstores](https://github.com/Mattboxx/TagRelayLab-Appstores) | Public Docker installation catalog and illustrated guides for the optional tracking server. |
+| [TagRelayLab-Server](https://github.com/Mattboxx/TagRelayLab-Server) | Self-hosted map, saved history and provider management; source repository currently private. |
+
+The library does not require TagRelayLab Server: use your own compatible
+provider/account workflow. Historical `Find_My_Web` or `find-my-hub` identifiers
+in existing integrations are compatibility names, not separate current projects.
+
 <details>
 <summary>Italian documentation</summary>
 
