@@ -21,6 +21,12 @@ Apple, Google o Espressif.
 
 ## Compatibilità
 
+La famiglia comprende **TagRelayLab ESP32 Library** (questa libreria, API
+`FindMyAdv`), **TagRelayLab Server** (mappa e gestione, sorgenti attualmente
+privati) e [**TagRelayLab Appstores**](https://github.com/Mattboxx/TagRelayLab-Appstores)
+(installazione Docker e guide pubbliche). Il server TagRelayLab non è obbligatorio
+per usare la libreria con un proprio flusso provider/account compatibile.
+
 Sono verificati ESP32 classico, ESP32-C3, ESP32-S3 ed ESP32-C6. Il backend
 predefinito usa NimBLE-Arduino e il GAP a basso livello. ESP32-C2, C5, C61 e H2
 restano sperimentali e non ancora verificati nella matrice del progetto: servono

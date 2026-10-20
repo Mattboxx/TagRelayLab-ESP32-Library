@@ -44,7 +44,7 @@ manifest while packing it.
 Use the public `Mattboxx/TagRelayLab-ESP32-Library` repository and merge verified
 source through a protected pull request. For a newly approved version only,
 create a new version tag and attach its generated archive. Do not
-commit the personal `FindMyAdv-configured.zip` produced by Find_My_Web.
+commit the personal `FindMyAdv-configured.zip` produced by TagRelayLab Server.
 
 ## 4. Verify installation from GitHub
 
