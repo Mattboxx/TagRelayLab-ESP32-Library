@@ -6,17 +6,17 @@
 | --- | ---: | --- |
 | `appleAdvertisementKeyBase64` | `""` | 28-byte Apple public advertisement key encoded as 40 Base64 characters; empty disables Apple |
 | `googleAdvertisementEidHex` | `""` | 20-byte Google advertisement EID encoded as 40 hexadecimal characters; empty disables Google |
-| `advertisingIntervalMs` | `2000` | BLE interval while stationary, clamped to the controller range 20–10240 ms |
+| `advertisingIntervalMs` | `2000` | Stationary BLE interval: valid range 20–10240 ms; out-of-range values reset to 2000 ms, not the nearest bound |
 | `txPowerDbm` | `0` | Requested advertising power, mapped to the nearest ESP controller level |
 | `providerWindowMs` | `6000` | Requested provider window; clamped to at least three stationary advertisement intervals (and at least 1 second) |
 | `accelerometerEnabled` | `false` | Enables LIS3DH/LIS2DH/LIS2DH12 motion detection |
-| `accelerometerWire` | `&Wire` | I2C bus instance; point it to `Wire1` or another initialized bus when required |
+| `accelerometerWire` | `nullptr` | Null selects `Wire` when the built-in driver is enabled; pass `&Wire1` or another bus when required |
 | `initializeAccelerometerBus` | `true` | Calls `begin(SDA, SCL)` on the selected bus; set false if the host firmware already initialized it |
 | `accelerometerSda` | `8` | I2C SDA pin |
 | `accelerometerScl` | `9` | I2C SCL pin |
 | `accelerometerAddress` | `0` | `0` probes `0x18`/`0x19`; otherwise forces the supplied address |
 | `motionThreshold` | `320` | Motion delta threshold; raise it to reject small vibrations |
-| `motionIntervalMs` | `200` | BLE interval while movement is active |
+| `motionIntervalMs` | `200` | Motion BLE interval: valid range 20–10240 ms; out-of-range values reset to 200 ms |
 | `motionHoldMs` | `30000` | Time to keep the motion interval after the last detected movement |
 | `motionDetectedCallback` | `nullptr` | Optional no-argument callback returning true on motion; supports any external sensor or application state |
 | `backgroundTask` | `true` | Runs the scheduler in an internal FreeRTOS task |
@@ -88,7 +88,7 @@ when another module needs scanning, client, or GATT-server roles.
 
 ## Threading and ownership
 
-Configuration updates are serialized by `reconfigure()`. Do not call
+Configuration updates stop and restart the private scheduler. Do not call
 `reconfigure()`, `setKeys()`, and `end()` concurrently from multiple tasks;
 serialize them in the host application when several configuration sources are
 present. The library owns legacy advertising while it is running but does not
