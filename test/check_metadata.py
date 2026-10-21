@@ -23,6 +23,7 @@ assert properties["depends"] == f"NimBLE-Arduino (>={minimum} && <{next_major}.0
 header = (ROOT / "src/FindMyAdv.h").read_text(encoding="utf-8")
 api = (ROOT / "docs/API.md").read_text(encoding="utf-8")
 fields = re.findall(r'^\s*(?:const char\s*\*|TwoWire\s*\*|u?int(?:8|16|32)_t|bool)\s*(\w+)\s*=\s*([^;]+);', header, re.M)
+fields += re.findall(r'^\s*bool\s*\(\s*\*\s*(\w+)\s*\)\s*\(\s*\)\s*=\s*([^;]+);', header, re.M)
 for name, default in fields:
     assert f"| `{name}` | `{default.strip()}` |" in api, f"API default drift: {name}"
 print("FindMyAdv metadata: names, version, canonical URLs and dependency ranges agree")
