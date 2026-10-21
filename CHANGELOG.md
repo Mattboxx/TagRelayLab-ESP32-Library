@@ -2,6 +2,8 @@
 
 ## Unreleased — Publication consistency
 
+- Match the API reference to actual config defaults and invalid-interval fallback;
+  clarify that callers must serialize lifecycle updates. Implementation unchanged.
 - Align Arduino's NimBLE dependency range with PlatformIO (`>=2.5.0 && <3.0.0`).
 - Distinguish CI-built targets from experimental, unverified chips; retain all
   code paths without promising on-air verification or certification.
